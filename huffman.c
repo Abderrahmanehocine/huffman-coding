@@ -1,3 +1,5 @@
+// Huffman coding program (the program didn't finish yet)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
