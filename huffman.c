@@ -1,4 +1,5 @@
 // Huffman coding program (the program didn't finish yet)
+// if you have any question you can contact me at: hocineabderrahmane@duck.com
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,6 +7,10 @@
 
 #define MAX_TEXT_SIZE 1024
 #define ASCII_SIZE 256
+#define MAX_BITS 9 
+
+// number of the characters
+int charachter_number = 0;
 
 typedef struct huffman_node{
     int character;
@@ -13,6 +18,11 @@ typedef struct huffman_node{
     struct huffman_node *left_child;
     struct huffman_node *right_child;
 } huffman_node;
+
+typedef struct character{
+    int character;
+    char code[MAX_BITS];
+} character;
 
 huffman_node *build_huffman_tree(int *freq){
     huffman_node *tree_node[ASCII_SIZE];
@@ -29,7 +39,7 @@ huffman_node *build_huffman_tree(int *freq){
             tree_node[node_index++] = node;
         }
     }
-
+    charachter_number = node_index-1;
     while(node_index > 1){
         int min_index1 = -1;
         int min_index2 = -2;
@@ -62,6 +72,27 @@ huffman_node *build_huffman_tree(int *freq){
     return tree_node[0];
 }
 
+void Create_code(huffman_node *root, character **char_nodes, int *index, char *code) {
+    if(root == NULL)
+        return;
+    if (root->left_child != NULL) {
+        strcat(code,"0");
+        Create_code(root->left_child, char_nodes, index, code);
+        if(root->right_child != NULL){
+            strcat(code,"1");
+            Create_code(root->right_child, char_nodes, index, code);
+        }
+    }
+    else{
+        character *new_node = (character*)malloc(sizeof(character));
+        new_node->character = root->character;
+        strcpy(new_node->code,code);
+        char_nodes[(*index)++] = new_node;
+        printf("%c code: %s\n", new_node->character,new_node->code);
+    }
+    code[strlen(code)-1] = '\0';
+}
+
 void freeTree(huffman_node* root) {
     if (root == NULL) {
         return;
@@ -69,6 +100,12 @@ void freeTree(huffman_node* root) {
     freeTree(root->left_child);
     freeTree(root->right_child);
     free(root);
+}
+
+void freeTree2(character **nodes){
+    int i;
+    for(i=0 ; i<charachter_number ; i++)
+        free(nodes[i]);
 }
 
 int main(int *argc, char **argv){
@@ -89,7 +126,13 @@ int main(int *argc, char **argv){
 
     // Build the huffman tree
     huffman_node *root = build_huffman_tree(freq);
+
+    int index = 0;
+    char code[MAX_BITS] = "";
+    printf("%d\n", charachter_number);
+    character *char_nodes[charachter_number];
     freeTree(root);
+    //freeTree2(char_nodes);
     printf("\n\n End of the prog\n");
 
     return 0;
