@@ -124,7 +124,7 @@ int main(int *argc, char **argv){
 
     // Scan the text from the user
     char text[MAX_TEXT_SIZE];
-    printf("Enter the text: ");
+    printf("\n\nEnter the text: ");
     scanf("\n");
     scanf("%[^\n]", text);
 
@@ -140,9 +140,22 @@ int main(int *argc, char **argv){
     // Create the code of each char in the message
     char code[MAX_BITS] = "";
     character *char_nodes[ASCII_SIZE];
+    memset(char_nodes, 0, sizeof(char_nodes));
     Create_code(root, char_nodes, code);
     char *message = Create_message_code(text, char_nodes);
-    printf("%s\n", message);
+
+    printf("\n\n");
+
+    for(i=0 ; i<ASCII_SIZE ; i++){
+        if(char_nodes[i] == NULL)
+            continue;
+        else{
+            printf("Character: %c  | Code: %s\n", char_nodes[i]->character, char_nodes[i]->code);
+        }
+    }
+
+    printf("\nText: %s\n",text);
+    printf("Code: %s\n\n\n", message);
 
     // Free the memory
     freeTree(root);
