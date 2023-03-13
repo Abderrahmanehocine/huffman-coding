@@ -1,5 +1,5 @@
-// Huffman coding program (the program didn't finish yet)
-// if you have any question you can contact me at: hocineabderrahmane@duck.com
+// Code written by hocine abderrahmane "Software engineer self student"
+// if you have any question or you find any error you can contact me at: hocineabderrahmane@duck.com
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -146,6 +146,7 @@ int main(int *argc, char **argv){
 
     printf("\n\n");
 
+    // Print each character with his code
     for(i=0 ; i<ASCII_SIZE ; i++){
         if(char_nodes[i] == NULL)
             continue;
@@ -154,6 +155,7 @@ int main(int *argc, char **argv){
         }
     }
 
+    // Print the text entered by the user with the final code result
     printf("\nText: %s\n",text);
     printf("Code: %s\n\n\n", message);
 
