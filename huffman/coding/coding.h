@@ -5,6 +5,8 @@
 #define ASCII_SIZE 256
 #define MAX_BITS 9 
 
+extern int charachter_number;
+extern int node_number;
 
 typedef struct huffman_node{
     int character;

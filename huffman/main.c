@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include "coding/coding.h"
+#include "file/write.h"
 
-int main(int *argc, char **argv){
+int main(int *argc, char **argv) {
 
     int i;
 
@@ -20,6 +21,7 @@ int main(int *argc, char **argv){
 
     // Build the huffman tree
     huffman_node *root = build_huffman_tree(freq);
+    huffman_node *head = root;
 
     // Create the code of each char in the message
     char code[MAX_BITS] = "";
@@ -30,6 +32,7 @@ int main(int *argc, char **argv){
 
     printf("\n\n");
 
+
     // Print each character with his code
     for(i=0 ; i<ASCII_SIZE ; i++){
         if(char_nodes[i] == NULL)
@@ -38,6 +41,8 @@ int main(int *argc, char **argv){
             printf("Character: %c  | Code: %s\n", char_nodes[i]->character, char_nodes[i]->code);
         }
     }
+
+    writeHuffmanData(head, char_nodes, message, charachter_number);
 
     // Print the text entered by the user with the final code result
     printf("\nText: %s\n",text);

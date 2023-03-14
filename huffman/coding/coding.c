@@ -3,8 +3,9 @@
 #include "coding.h"
 
 int charachter_number = 0;
+int node_number = 0;
 
-huffman_node *build_huffman_tree(int *freq){
+huffman_node *build_huffman_tree(int *freq) {
     huffman_node *tree_node[ASCII_SIZE];
     int node_index = 0;
 
@@ -37,6 +38,7 @@ huffman_node *build_huffman_tree(int *freq){
         new_node->freqency  = tree_node[min_index1]->freqency + tree_node[min_index2]->freqency;
         new_node->left_child = tree_node[min_index1];
         new_node->right_child = tree_node[min_index2];
+        node_number++;
 
         if (min_index1 < min_index2) {
             tree_node[min_index1] = new_node;
@@ -71,7 +73,7 @@ void Create_code(huffman_node *root, character **char_nodes, char *code) {
     code[strlen(code)-1] = '\0';
 }
 
-char *Create_message_code(char *text, character **nodes){
+char *Create_message_code(char *text, character **nodes) {
     char message[ASCII_SIZE]="";
     int i;
     for(i = 0 ; i < strlen(text) ; i++){
@@ -90,7 +92,7 @@ void freeTree(huffman_node* root) {
     free(root);
 }
 
-void freeTree2(character **nodes){
+void freeTree2(character **nodes) {
     int i;
     for(i=0 ; i<charachter_number ; i++)
         free(nodes[i]);
