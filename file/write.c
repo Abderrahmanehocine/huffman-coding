@@ -2,7 +2,7 @@
 #include "write.h"
 
 bool writeHuffmanData(huffman_node *tree, character **nodes ,const char *message, int char_number) {
-    FILE *file = fopen("huffman_data.txt","w");
+    FILE *file = fopen("file/huffman_data.txt","w");
     if(file == NULL){
         perror("Error opening file in writeHuffmanData()\n");
         return 1;
@@ -17,7 +17,7 @@ bool writeHuffmanData(huffman_node *tree, character **nodes ,const char *message
         return 1;
     }
 
-    file = fopen("huffman_data.txt","a+");
+    file = fopen("file/huffman_data.txt","a+");
     if(file == NULL){
         perror("Error openinh file of printing huffman tree");
         return 1;
@@ -31,7 +31,7 @@ bool writeHuffmanData(huffman_node *tree, character **nodes ,const char *message
 }
 
 bool print_chars(character **node){
-    FILE *fileName = fopen("huffman_data.txt","a+");
+    FILE *fileName = fopen("file/huffman_data.txt","a+");
     if(fileName == NULL){
         perror("Error opening file in print_char()\n");
         return 1;

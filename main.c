@@ -3,7 +3,7 @@
 #include "coding/coding.h"
 #include "file/write.h"
 
-int main(int *argc, char **argv) {
+int main(int argc, char **argv) {
 
     int i;
 
