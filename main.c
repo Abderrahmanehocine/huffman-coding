@@ -2,6 +2,7 @@
 #include <string.h>
 #include "coding/coding.h"
 #include "file/write.h"
+#include "decoding/decoding.h"
 
 int main(int argc, char **argv) {
 
@@ -45,8 +46,10 @@ int main(int argc, char **argv) {
     writeHuffmanData(head, char_nodes, message, charachter_number);
 
     // Print the text entered by the user with the final code result
-    printf("\nText: %s\n",text);
     printf("Code: %s\n\n\n", message);
+
+    char *original_message = generateDecoding();
+    printf("original message: %s\n",original_message);
 
     // Free the memory
     freeTree(root);

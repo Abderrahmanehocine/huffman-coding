@@ -7,7 +7,7 @@ CC = gcc
 CFLAGS = -Wall -g
 
 # Compile source files 
-SRCS = main.c coding/coding.c file/write.c
+SRCS = main.c coding/coding.c file/write.c file/read.c decoding/decoding.c
 
 # Create object files
 OBJS = $(SRCS:.c=.o)
@@ -36,7 +36,7 @@ run: $(TARGET)
 	./$(TARGET)
 
 # Default rule
-all: $(TARGET) clean clear run
+all: $(TARGET) clean clear run #must write clear after clean
 
 # This tells make that clean, run and clear are not files, but just commands that need to be run.
 .PHONY: clean run clear
