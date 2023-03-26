@@ -29,6 +29,8 @@ int main(int argc, char **argv) {
     character *char_nodes[ASCII_SIZE];
     memset(char_nodes, 0, sizeof(char_nodes));
     Create_code(root, char_nodes, code);
+
+    // Create the huffman code
     char *message = Create_message_code(text, char_nodes);
 
     printf("\n\n");
@@ -43,11 +45,13 @@ int main(int argc, char **argv) {
         }
     }
 
+    // Write the charecters with there code and the huffman tree and the code of the message in a file
     writeHuffmanData(head, char_nodes, message, charachter_number);
 
     // Print the text entered by the user with the final code result
     printf("Code: %s\n\n\n", message);
 
+    // Decode the code of the text to get the original message
     char *original_message = generateDecoding();
     printf("original message: %s\n",original_message);
 

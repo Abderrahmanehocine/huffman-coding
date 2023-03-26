@@ -36,7 +36,7 @@ run: $(TARGET)
 	./$(TARGET)
 
 # Default rule
-all: $(TARGET) clean clear run #must write clear after clean
+all: $(TARGET) clean clear run 
 
 # This tells make that clean, run and clear are not files, but just commands that need to be run.
 .PHONY: clean run clear
